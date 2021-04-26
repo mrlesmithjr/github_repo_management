@@ -1,4 +1,4 @@
-from github import Github
+from github import Github, GithubException
 
 
 class Users:
@@ -15,6 +15,9 @@ class Users:
 
     def auth(self):
         """[summary]"""
-        gh = Github(self.token)
-
-        return gh
+        try:
+            gh = Github(self.token)
+            return gh
+        except GithubException as e:
+            print(e)
+            exit(2)
