@@ -1,15 +1,34 @@
 """github_repo_management/cli.py"""
 
-import argparse
-from github_repo_management.release import __package_name__, __version__
+import click
+from github_repo_management.resources.users import Users
 
 
-def cli_args():
-    """Console script for github_repo_management."""
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--version", action="version", version=f"{__package_name__} {__version__}"
-    )
-    args = parser.parse_args()
+@click.group()
+@click.option("--token", required=True, help="GitHub API token.")
+@click.option("--user", help="GitHub user to manage.")
+@click.pass_context
+def cli(ctx, token, user):
+    """[summary]
 
-    return args
+    Args:
+        ctx ([type]): [description]
+        token ([type]): [description]
+        user ([type]): [description]
+    """
+    ctx.obj = {"token": token, "user": user}
+
+
+@cli.command()
+@click.pass_context
+def user(ctx):
+    """[summary]
+
+    Args:
+        ctx ([type]): [description]
+    """
+    users = Users(ctx)
+    users.auth()
+
+
+cli.add_command(user)
