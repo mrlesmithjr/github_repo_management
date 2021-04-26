@@ -4,11 +4,11 @@ from github import Github, GithubException
 class Users:
     """[summary]"""
 
-    def __init__(self, ctx):
+    def __init__(self, ctx: object):
         """[summary]
 
         Args:
-            ctx ([type]): [description]
+            ctx (object): [description]
         """
         self.token = ctx.obj["token"]
         self.user = ctx.obj["user"]

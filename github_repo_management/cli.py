@@ -8,27 +8,26 @@ from github_repo_management.resources.users import Users
 @click.option("--token", required=True, help="GitHub API token.")
 @click.option("--user", help="GitHub user to manage.")
 @click.pass_context
-def cli(ctx, token, user):
+def cli(ctx: object, token: str, user: str):
     """[summary]
 
     Args:
-        ctx ([type]): [description]
-        token ([type]): [description]
-        user ([type]): [description]
+        ctx (object): [description]
+        token (str): [description]
+        user (str): [description]
     """
     ctx.obj = {"token": token, "user": user}
 
 
-@cli.command()
-@click.pass_context
-def user(ctx):
+def auth(ctx: object):
     """[summary]
 
     Args:
-        ctx ([type]): [description]
+        ctx (object): [description]
+
+    Returns:
+        [type]: [description]
     """
     users = Users(ctx)
-    users.auth()
-
-
-cli.add_command(user)
+    user = users.auth().get_user()
+    return user
