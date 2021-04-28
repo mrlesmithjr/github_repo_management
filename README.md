@@ -2,18 +2,15 @@
 
 Manage GitHub repos using Python
 
-
 ## Build Status
 
 ### GitHub Actions
 
-![Python Test](https://github.com/mrlesmithjr/github_repo_management/workflows/Python%20Test/badge.svg)
+![Python Test](https://github.com/mrlesmithjr/github_repo_management/workflows/Default%20Tests/badge.svg)
 
 ### Travis CI
 
-[![Build Status](https://travis-ci.org/mrlesmithjr/github_repo_management.svg?branch=master)](https://travis-ci.org/mrlesmithjr/github_repo_management)
-
-
+[![Build Status](https://travis-ci.com/mrlesmithjr/github_repo_management.svg?branch=master)](https://travis-ci.com/mrlesmithjr/github_repo_management)
 
 ## Requirements
 
