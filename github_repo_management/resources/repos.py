@@ -9,15 +9,14 @@ API_URL = "https://api.github.com/repos"
 class Repos:
     """[summary]"""
 
-    def __init__(self, user: str, ctx: object):
+    def __init__(self, ctx: object):
         """[summary]
 
         Args:
-            user (str): [description]
             ctx (object): [description]
         """
-        self.login = user.login
-        self.user = user
+        self.login = ctx.obj["user"].login
+        self.user = ctx.obj["user"]
         self.token = ctx.obj["token"]
         self.url = f"{API_URL}/{self.login}"
         self.headers = {

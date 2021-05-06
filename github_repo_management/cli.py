@@ -8,29 +8,28 @@ from github_repo_management.resources.repos import Repos
 
 @click.group()
 @click.option("--token", required=True, help="GitHub API token.")
-@click.option("--user", help="GitHub user to manage.")
 @click.pass_context
-def cli(ctx: object, token: str, user: str):
+def cli(ctx: object, token: str):
     """[summary]
 
     Args:
         ctx (object): [description]
         token (str): [description]
-        user (str): [description]
     """
+    user = auth(token)
     ctx.obj = {"token": token, "user": user}
 
 
-def auth(ctx: object):
+def auth(token: str):
     """[summary]
 
     Args:
-        ctx (object): [description]
+        token (str): [description]
 
     Returns:
         [type]: [description]
     """
-    users = Users(ctx)
+    users = Users(token)
     user = users.auth().get_user()
     return user
 
@@ -43,8 +42,7 @@ def get_repos(ctx: object):
     Args:
         ctx ([type]): [description]
     """
-    user = auth(ctx)
-    repos = Repos(user, ctx)
+    repos = Repos(ctx)
     repos = repos.get_repos()
 
 
@@ -56,8 +54,7 @@ def get_repo_secrets(ctx: object):
     Args:
         ctx ([type]): [description]
     """
-    user = auth(ctx)
-    repos = Repos(user, ctx)
+    repos = Repos(ctx)
     repo_secrets = repos.get_secrets()
     print(json.dumps(repo_secrets))
 
@@ -65,8 +62,12 @@ def get_repo_secrets(ctx: object):
 @cli.command()
 @click.pass_context
 def add_repo_secrets(ctx: object):
-    user = auth(ctx)
-    repos = Repos(user, ctx)
+    """[summary]
+
+    Args:
+        ctx (object): [description]
+    """
+    repos = Repos(ctx)
     repos.add_secrets()
 
 
