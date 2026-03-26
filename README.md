@@ -1,4 +1,7 @@
-# GitHub Repo Management
+> [!CAUTION]
+> **This project is archived and no longer maintained.**
+> Archived: 2026-03-26
+> Reason: Python GitHub repo management tool; no longer maintained# GitHub Repo Management
 
 Manage GitHub repos using Python
 
